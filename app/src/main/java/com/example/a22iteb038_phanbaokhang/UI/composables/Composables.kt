@@ -1,4 +1,4 @@
-package com.example.a22IT_EB038_phan_bao_khang.UI.composables
+package com.example.a22iteb038_phanbaokhang.UI.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,15 +24,17 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,8 +48,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.a22IT_EB038_phan_bao_khang.Data.Course
-import com.example.a22IT_EB038_phan_bao_khang.ViewModel.CourseViewModel
+import com.example.a22iteb038_phanbaokhang.Data.Course
+import com.example.a22iteb038_phanbaokhang.ViewModel.CourseViewModel
 
 
 @Composable
@@ -58,7 +60,7 @@ fun UserInput(
     keyboardOptions: KeyboardOptions,
     modifier: Modifier
 ) {
-    TextField(
+    OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(text = label) },
@@ -71,15 +73,19 @@ fun UserInput(
 @Composable
 fun TheButton(
     buttonName: String,
-    buttonEvent:() -> Unit,
+    buttonEvent: () -> Unit,
     modifier: Modifier,
     modifierText: Modifier
 ) {
     Button(
         onClick = buttonEvent,
         modifier = modifier,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xff2D9596),
+
+            )
     ) {
-        Text(text = buttonName,modifier = modifierText)
+        Text(text = buttonName, modifier = modifierText)
     }
 }
 
@@ -94,41 +100,71 @@ fun ListOfMenu(
     Box(
         modifier = modifierHome,
         contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            imageVector = Icons.Default.Home,
-            contentDescription = null
-        )
-    }
 
-    Box(
-        modifier = modifierEquation,
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            imageVector = Icons.Filled.Numbers,
-            contentDescription = null
-        )
+        ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Default.Home,
+                contentDescription = null,
+            )
+            Text(text = "Home")
+        }
     }
 
     Box(
         modifier = modifierPrime,
         contentAlignment = Alignment.Center,
     ) {
-        Icon(
-            imageVector = Icons.Default.Calculate,
-            contentDescription = null
-        )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Numbers,
+                contentDescription = null
+            )
+            Text(text = "Prime")
+        }
     }
+
+    Box(
+        modifier = modifierEquation,
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Default.Calculate,
+                contentDescription = null
+            )
+            Text(text = "Equation")
+        }
+    }
+
 
     Box(
         modifier = modifierCourse,
         contentAlignment = Alignment.Center,
     ) {
-        Icon(
-            imageVector = Icons.Default.Book,
-            contentDescription = null
-        )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = Icons.Default.Book,
+                contentDescription = null
+            )
+            Text(text = "Course")
+        }
     }
 }
 
@@ -297,6 +333,8 @@ fun CourseItem(
     modifier: Modifier,
     courseViewModel: CourseViewModel = viewModel()
 ) {
+    val courseUiState by courseViewModel.uiState.collectAsState()
+
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -315,6 +353,7 @@ fun CourseItem(
                 ),
             )
             .clickable {
+
                 expanded = !expanded
             },
     ) {

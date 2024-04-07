@@ -1,7 +1,7 @@
 package com.example.a22iteb038_phanbaokhang.Data
 
 data class Course(
-    val courseID: String = "",
+    var courseID: String = "",
     var courseName: String = "",
     var courseCredit: String = "",
     var semester: String = "",

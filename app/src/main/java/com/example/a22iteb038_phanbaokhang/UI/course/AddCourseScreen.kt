@@ -1,4 +1,4 @@
-package com.example.a22IT_EB038_phan_bao_khang.UI.course
+package com.example.a22iteb038_phanbaokhang.UI.course
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,14 +25,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.CourseList
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TitleOfCourse
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.UserInput
-import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
-import com.example.a22IT_EB038_phan_bao_khang.ViewModel.CourseViewModel
+import com.example.a22iteb038_phanbaokhang.UI.composables.ContentBottomAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.CourseList
+import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
+import com.example.a22iteb038_phanbaokhang.UI.composables.TitleOfCourse
+import com.example.a22iteb038_phanbaokhang.UI.composables.UserInput
+import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.a22iteb038_phanbaokhang.ViewModel.CourseViewModel
+import com.example.compose.AppTheme
 
 @Composable
 fun AddCourseScreen(
@@ -46,110 +47,112 @@ fun AddCourseScreen(
     val courseUiState by courseViewModel.uiState.collectAsState()
     val context = LocalContext.current
 
-    Scaffold(
+    AppTheme {
+        Scaffold(
 //        Header
-        topBar = {
-            MyTopAppBar("Course Manager")
-        },
+            topBar = {
+                MyTopAppBar("Course Manager")
+            },
 //        Footer
-        bottomBar = {
-            BottomAppBar(
-                containerColor = Color(0xFF00ADB5),
-                contentColor = Color.White,
+            bottomBar = {
+                BottomAppBar(
+                    containerColor = Color(0xFF00ADB5),
+                    contentColor = Color.White,
+                ) {
+                    ContentBottomAppBar(
+                        modifier = Modifier.weight(4f),
+                        primeOnScreen = primeOnScreen,
+                        equationOnScreen = equationOnScreen,
+                        courseOnScreen = courseOnScreen,
+                        homeOnScreen = homeOnScreen
+                    )
+                }
+
+            },
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ContentBottomAppBar(
-                    modifier = Modifier.weight(4f),
-                    primeOnScreen = primeOnScreen,
-                    equationOnScreen = equationOnScreen,
-                    courseOnScreen = courseOnScreen,
-                    homeOnScreen = homeOnScreen
-                )
-            }
+                Spacer(modifier = Modifier.height(30.dp))
 
-        },
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Column(modifier = Modifier.weight(0.5f)) {
-                TitleOfCourse()
-            }
+                Column(modifier = Modifier.weight(0.5f)) {
+                    TitleOfCourse()
+                }
 
 //          Course List
-            Column(
-                modifier = Modifier.weight(2.5f)
-            ) {
-                CourseList(
-                    courseList = if (courseUiState.courseID.isNotBlank()) {
-                        courseViewModel.searchCourse(courseUiState.courseID)
-                    } else {
-                        courseViewModel.courseList
-                    }
-                )
-            }
-            Spacer(modifier = Modifier.height(30.dp))
+                Column(
+                    modifier = Modifier.weight(2.5f)
+                ) {
+                    CourseList(
+                        courseList = if (courseUiState.courseID.isNotBlank()) {
+                            courseViewModel.searchCourse(courseUiState.courseID)
+                        } else {
+                            courseViewModel.courseList
+                        }
+                    )
+                }
+                Spacer(modifier = Modifier.height(30.dp))
 
 //            User Input
-            UserInput(
-                value = courseUiState.courseID,
-                onValueChange = { courseViewModel.updateID(it) },
-                label = "Course ID:",
-                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
-                modifier = Modifier
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            UserInput(
-                value = courseUiState.courseName,
-                onValueChange = { courseViewModel.updateName(it) },
-                label = "Course Name:",
-                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
-                modifier = Modifier
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.wrapContentSize(),
+                UserInput(
+                    value = courseUiState.courseID,
+                    onValueChange = { courseViewModel.updateID(it) },
+                    label = "Course ID:",
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                UserInput(
+                    value = courseUiState.courseName,
+                    onValueChange = { courseViewModel.updateName(it) },
+                    label = "Course Name:",
+                    keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(
+                    modifier = Modifier.wrapContentSize(),
 
-                ) {
-                UserInput(
-                    value = courseUiState.courseCredit,
-                    onValueChange = { courseViewModel.updateCredit(it) },
-                    label = "Credit:",
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        imeAction = ImeAction.Next,
-                        keyboardType = KeyboardType.Number
-                    ),
-                    modifier = Modifier.weight(1f)
-                )
-                Spacer(modifier = Modifier.width(15.dp))
-                UserInput(
-                    value = courseUiState.semester,
-                    onValueChange = { courseViewModel.updateSemester(it) },
-                    label = "Semester:",
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        imeAction = ImeAction.Done,
-                        keyboardType = KeyboardType.Number
-                    ),
-                    modifier = Modifier.weight(1f)
-                )
-            }
-            Spacer(modifier = Modifier.height(15.dp))
+                    ) {
+                    UserInput(
+                        value = courseUiState.courseCredit,
+                        onValueChange = { courseViewModel.updateCredit(it) },
+                        label = "Credit:",
+                        keyboardOptions = KeyboardOptions.Default.copy(
+                            imeAction = ImeAction.Next,
+                            keyboardType = KeyboardType.Number
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    UserInput(
+                        value = courseUiState.semester,
+                        onValueChange = { courseViewModel.updateSemester(it) },
+                        label = "Semester:",
+                        keyboardOptions = KeyboardOptions.Default.copy(
+                            imeAction = ImeAction.Done,
+                            keyboardType = KeyboardType.Number
+                        ),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(modifier = Modifier.height(15.dp))
 
 //            Button Add
-            TheButton(
-                buttonName = "Add to List",
-                buttonEvent = {
-                    courseViewModel.addCourse(context)
-                },
-                modifier = Modifier.clip(RoundedCornerShape(100)),
-                modifierText = Modifier
-            )
-            Spacer(modifier = Modifier.height(15.dp))
+                TheButton(
+                    buttonName = "Add to List",
+                    buttonEvent = {
+                        courseViewModel.addCourse(context)
+                    },
+                    modifier = Modifier.clip(RoundedCornerShape(100)),
+                    modifierText = Modifier
+                )
+                Spacer(modifier = Modifier.height(15.dp))
 
+            }
         }
     }
 }
@@ -157,7 +160,7 @@ fun AddCourseScreen(
 @Preview(showBackground = true)
 @Composable
 fun AddCoursePreview() {
-    _22ITEB038_PhanBaoKhangTheme {
+    AppTheme {
         AddCourseScreen(
             primeOnScreen = {},
             homeOnScreen = {},

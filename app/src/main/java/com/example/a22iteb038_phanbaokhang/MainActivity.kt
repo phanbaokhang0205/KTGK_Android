@@ -1,4 +1,4 @@
-package com.example.a22IT_EB038_phan_bao_khang
+package com.example.a22iteb038_phanbaokhang
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,14 +8,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.a22IT_EB038_phan_bao_khang.UI.navigation.Navigation
-import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.a22iteb038_phanbaokhang.UI.navigation.Navigation
+import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.compose.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            _22ITEB038_PhanBaoKhangTheme {
+            AppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

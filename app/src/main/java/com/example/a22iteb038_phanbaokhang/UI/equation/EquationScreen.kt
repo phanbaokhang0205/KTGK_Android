@@ -1,4 +1,4 @@
-package com.example.a22IT_EB038_phan_bao_khang.UI.equation
+package com.example.a22iteb038_phanbaokhang.UI.equation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,10 +27,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
-import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.a22iteb038_phanbaokhang.UI.composables.ContentBottomAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
+import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
 
 
 @Composable
@@ -141,8 +141,13 @@ fun EquationScreen(
                     modifierText = Modifier
                 )
             }
+            Spacer(modifier = Modifier.width(30.dp))
 
-            Text(message)
+            Text(
+                message,
+                fontWeight = FontWeight.Bold,
+                fontSize = 23.sp
+            )
 
         }
     }

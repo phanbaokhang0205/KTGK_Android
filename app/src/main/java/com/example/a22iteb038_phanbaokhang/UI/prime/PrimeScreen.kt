@@ -1,10 +1,11 @@
-package com.example.a22IT_EB038_phan_bao_khang.UI.prime
+package com.example.a22iteb038_phanbaokhang.UI.prime
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,20 +20,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
-import com.example.a22IT_EB038_phan_bao_khang.UI.composables.UserInput
+import androidx.compose.ui.unit.sp
+import com.example.a22iteb038_phanbaokhang.UI.composables.ContentBottomAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
+import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
+import com.example.a22iteb038_phanbaokhang.UI.composables.UserInput
+import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
 
 @Composable
 fun PrimeNumberScreen(
-    primeOnScreen:() -> Unit,
-    equationOnScreen:() -> Unit,
-    courseOnScreen:() -> Unit,
-    homeOnScreen:() -> Unit,
+    primeOnScreen: () -> Unit,
+    equationOnScreen: () -> Unit,
+    courseOnScreen: () -> Unit,
+    homeOnScreen: () -> Unit,
 ) {
 
     var inputValue by remember {
@@ -82,7 +87,7 @@ fun PrimeNumberScreen(
                 ),
                 modifier = Modifier
             )
-
+            Spacer(modifier = Modifier.height(30.dp))
             Row {
                 TheButton(
                     buttonName = "Check",
@@ -104,13 +109,19 @@ fun PrimeNumberScreen(
                 TheButton(
                     buttonName = "Reset",
                     buttonEvent = {
-                                  inputValue = ""
-                                  },
+                        inputValue = ""
+                    },
                     modifier = Modifier,
                     modifierText = Modifier
                 )
             }
-            Text(message)
+            Spacer(modifier = Modifier.width(30.dp))
+
+            Text(
+                message,
+                fontWeight = FontWeight.Bold,
+                fontSize = 23.sp
+            )
 
 
         }
@@ -126,4 +137,17 @@ private fun checkPrime(numb: Int): Boolean {
     return true
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun AddCoursePreview() {
+    _22ITEB038_PhanBaoKhangTheme {
+        PrimeNumberScreen(
+            primeOnScreen = {},
+            homeOnScreen = {},
+            courseOnScreen = {},
+            equationOnScreen = {},
+        )
+    }
+}
 

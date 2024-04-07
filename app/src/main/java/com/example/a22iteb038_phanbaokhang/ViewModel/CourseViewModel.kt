@@ -1,11 +1,11 @@
-package com.example.a22IT_EB038_phan_bao_khang.ViewModel
+package com.example.a22iteb038_phanbaokhang.ViewModel
 
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-import com.example.a22IT_EB038_phan_bao_khang.Data.Course
-import com.example.a22IT_EB038_phan_bao_khang.Data.ListCourse
+import com.example.a22iteb038_phanbaokhang.Data.Course
+import com.example.a22iteb038_phanbaokhang.Data.ListCourse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -52,14 +52,13 @@ class CourseViewModel : ViewModel() {
         return courseList.filter {
             it.courseID.contains(searchText, ignoreCase = true) ||
                     it.courseName.contains(searchText, ignoreCase = true) ||
-                    it.courseCredit
-                        .contains(searchText, ignoreCase = true) ||
+                    it.courseCredit.contains(searchText, ignoreCase = true) ||
                     it.semester.contains(searchText, ignoreCase = true)
         }.toMutableList()
 
     }
 
-    private fun updateAll() {
+    fun updateAll() {
         updateID("")
         updateName("")
         updateSemester("")
@@ -101,5 +100,8 @@ class CourseViewModel : ViewModel() {
         }
     }
 
+    fun clicked() {
+
+    }
 
 }

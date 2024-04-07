@@ -1,16 +1,16 @@
-package com.example.a22IT_EB038_phan_bao_khang.UI.navigation
+package com.example.a22iteb038_phanbaokhang.UI.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.a22IT_EB038_phan_bao_khang.UI.course.AddCourseScreen
-import com.example.a22IT_EB038_phan_bao_khang.UI.equation.EquationScreen
-import com.example.a22IT_EB038_phan_bao_khang.UI.home.HomeScreen
-import com.example.a22IT_EB038_phan_bao_khang.UI.prime.PrimeNumberScreen
+import com.example.a22iteb038_phanbaokhang.UI.course.AddCourseScreen
+import com.example.a22iteb038_phanbaokhang.UI.equation.EquationScreen
+import com.example.a22iteb038_phanbaokhang.UI.home.HomeScreen
+import com.example.a22iteb038_phanbaokhang.UI.prime.PrimeNumberScreen
 
 enum class MyApp {
-    HOME, PRIME, EQUATION, COURSE, ADD
+    HOME, PRIME, EQUATION, COURSE
 }
 
 @Composable
