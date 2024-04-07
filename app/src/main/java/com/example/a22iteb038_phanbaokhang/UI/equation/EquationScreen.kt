@@ -1,17 +1,16 @@
-package com.example.a22iteb038_phanbaokhang.UI.equation
+package com.example.a22IT_EB038_phan_bao_khang.UI.equation
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,13 +21,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.a22iteb038_phanbaokhang.UI.composables.Menu
-import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
-import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
-import com.example.a22iteb038_phanbaokhang.UI.composables.UserInput
+import androidx.compose.ui.unit.sp
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
+import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
 
 
 @Composable
@@ -59,53 +61,13 @@ fun EquationScreen(
                 containerColor = Color(0xFF00ADB5),
                 contentColor = Color.White,
             ) {
-                Row(
-                    modifier = Modifier.weight(4f)
-                ) {
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                homeOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Home"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                primeOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Prime"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                equationOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Equation"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                courseOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Courses"
-                    )
-                }
+                ContentBottomAppBar(
+                    modifier = Modifier.weight(4f),
+                    primeOnScreen = primeOnScreen,
+                    equationOnScreen = equationOnScreen,
+                    courseOnScreen = courseOnScreen,
+                    homeOnScreen = homeOnScreen
+                )
             }
 
         },
@@ -118,31 +80,41 @@ fun EquationScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Solve the equation: ax+b = 0"
+                text = "Solve the equation: ax+b = 0",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold
             )
+            Spacer(modifier = Modifier.height(30.dp))
 
-            UserInput(
+            OutlinedTextField(
                 value = a,
-                onValueChange = { a = it },
-                label = "Input a:",
+                onValueChange = {a = it},
+                label = { Text(text = "Input a:")},
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier
+
             )
-            UserInput(
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            OutlinedTextField(
                 value = b,
-                onValueChange = { b = it },
-                label = "Input b:",
+                onValueChange = {b = it},
+                label = { Text(text = "Input a:")},
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done
                 ),
                 modifier = Modifier
             )
+            Spacer(modifier = Modifier.height(30.dp))
 
             Row {
+
+
                 TheButton(
                     buttonName = "Solve",
                     buttonEvent = {
@@ -176,4 +148,17 @@ fun EquationScreen(
     }
 
 
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AddCoursePreview() {
+    _22ITEB038_PhanBaoKhangTheme {
+        EquationScreen(
+            primeOnScreen = {},
+            homeOnScreen = {},
+            courseOnScreen = {},
+            equationOnScreen = {},
+        )
+    }
 }

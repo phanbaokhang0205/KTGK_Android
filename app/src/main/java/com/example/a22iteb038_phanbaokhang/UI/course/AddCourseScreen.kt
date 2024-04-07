@@ -1,6 +1,5 @@
-package com.example.a22iteb038_phanbaokhang.UI.course
+package com.example.a22IT_EB038_phan_bao_khang.UI.course
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +11,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -23,20 +20,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.a22iteb038_phanbaokhang.Data.Course
-import com.example.a22iteb038_phanbaokhang.UI.composables.ContentBottomAppBar
-import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
-import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
-import com.example.a22iteb038_phanbaokhang.UI.composables.UserInput
-import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
-import com.example.a22iteb038_phanbaokhang.ViewModel.CourseViewModel
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.CourseList
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TitleOfCourse
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.UserInput
+import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.a22IT_EB038_phan_bao_khang.ViewModel.CourseViewModel
 
 @Composable
 fun AddCourseScreen(
@@ -89,7 +85,11 @@ fun AddCourseScreen(
                 modifier = Modifier.weight(2.5f)
             ) {
                 CourseList(
-                    courseList = courseViewModel.courseList
+                    courseList = if (courseUiState.courseID.isNotBlank()) {
+                        courseViewModel.searchCourse(courseUiState.courseID)
+                    } else {
+                        courseViewModel.courseList
+                    }
                 )
             }
             Spacer(modifier = Modifier.height(30.dp))
@@ -150,7 +150,6 @@ fun AddCourseScreen(
             )
             Spacer(modifier = Modifier.height(15.dp))
 
-
         }
     }
 }
@@ -164,20 +163,6 @@ fun AddCoursePreview() {
             homeOnScreen = {},
             courseOnScreen = {},
             equationOnScreen = {},
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CoursePreview() {
-    _22ITEB038_PhanBaoKhangTheme {
-        CourseScreen(
-            primeOnScreen = {},
-            homeOnScreen = {},
-            courseOnScreen = {},
-            equationOnScreen = {},
-            goToAdd = {}
         )
     }
 }

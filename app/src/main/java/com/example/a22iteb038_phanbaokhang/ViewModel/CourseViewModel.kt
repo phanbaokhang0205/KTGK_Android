@@ -1,14 +1,11 @@
-package com.example.a22iteb038_phanbaokhang.ViewModel
+package com.example.a22IT_EB038_phan_bao_khang.ViewModel
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.a22iteb038_phanbaokhang.Data.Course
-import com.example.a22iteb038_phanbaokhang.Data.ListCourse
+import com.example.a22IT_EB038_phan_bao_khang.Data.Course
+import com.example.a22IT_EB038_phan_bao_khang.Data.ListCourse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,16 +17,11 @@ class CourseViewModel : ViewModel() {
     //    Course List
     val courseList = mutableStateListOf<Course>()
 
-    var searchText by mutableStateOf("")
-        private set
 
     init {
         courseList.addAll(ListCourse.courses)
     }
 
-    fun updateSearch(value:String) {
-        searchText = value
-    }
     //    Update User inputs to UI
     fun updateID(value: String) {
         _uiState.value = _uiState.value.copy(

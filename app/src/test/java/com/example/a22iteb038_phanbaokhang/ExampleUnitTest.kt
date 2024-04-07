@@ -1,4 +1,4 @@
-package com.example.a22iteb038_phanbaokhang
+package com.example.a22IT_EB038_phan_bao_khang
 
 import org.junit.Test
 

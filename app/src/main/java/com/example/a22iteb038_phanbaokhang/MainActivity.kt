@@ -1,4 +1,4 @@
-package com.example.a22iteb038_phanbaokhang
+package com.example.a22IT_EB038_phan_bao_khang
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,12 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.a22iteb038_phanbaokhang.UI.navigation.Navigation
-import com.example.a22iteb038_phanbaokhang.UI.theme._22ITEB038_PhanBaoKhangTheme
+import com.example.a22IT_EB038_phan_bao_khang.UI.navigation.Navigation
+import com.example.a22IT_EB038_phan_bao_khang.UI.theme._22ITEB038_PhanBaoKhangTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

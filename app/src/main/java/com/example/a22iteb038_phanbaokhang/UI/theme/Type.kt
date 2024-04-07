@@ -1,4 +1,4 @@
-package com.example.a22iteb038_phanbaokhang.UI.theme
+package com.example.a22IT_EB038_phan_bao_khang.UI.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

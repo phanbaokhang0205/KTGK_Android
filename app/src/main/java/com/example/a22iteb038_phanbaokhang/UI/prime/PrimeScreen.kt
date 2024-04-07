@@ -1,17 +1,14 @@
-package com.example.a22iteb038_phanbaokhang.UI.prime
+package com.example.a22IT_EB038_phan_bao_khang.UI.prime
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,10 +22,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.example.a22iteb038_phanbaokhang.UI.composables.Menu
-import com.example.a22iteb038_phanbaokhang.UI.composables.MyTopAppBar
-import com.example.a22iteb038_phanbaokhang.UI.composables.TheButton
-import com.example.a22iteb038_phanbaokhang.UI.composables.UserInput
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.ContentBottomAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.MyTopAppBar
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.TheButton
+import com.example.a22IT_EB038_phan_bao_khang.UI.composables.UserInput
 
 @Composable
 fun PrimeNumberScreen(
@@ -57,53 +54,13 @@ fun PrimeNumberScreen(
                 containerColor = Color(0xFF00ADB5),
                 contentColor = Color.White,
             ) {
-                Row(
-                    modifier = Modifier.weight(4f)
-                ) {
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                homeOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Home"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                primeOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Prime"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                equationOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Equation"
-                    )
-
-                    Menu(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .clickable {
-                                courseOnScreen()
-                            },
-                        modifierText = Modifier,
-                        title = "Courses"
-                    )
-                }
+                ContentBottomAppBar(
+                    modifier = Modifier.weight(4f),
+                    primeOnScreen = primeOnScreen,
+                    equationOnScreen = equationOnScreen,
+                    courseOnScreen = courseOnScreen,
+                    homeOnScreen = homeOnScreen
+                )
             }
 
         },
